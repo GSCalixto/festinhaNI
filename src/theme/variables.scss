@@ -74,4 +74,22 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** festinha **/
+  --ion-color-festinha: #ff66cc;
+  --ion-color-festinha-rgb: 255, 102, 204;
+  --ion-color-festinha-contrast: #ffffff;
+  --ion-color-festinha-contrast-rgb: 255, 255, 255;
+  --ion-color-festinha-shade: #ffccee  ;
+  --ion-color-festinha-tint: #ff99dd;
+
+  .festinha {
+    --background: var(--ion-color-festinha);
+    --color: var(--ion-color-festinha-contrast);
+  }
+
+  // Opções Globais
+  // --ion-background-color:#000;
+  // --ion-text-color:#fff;
+  
 }

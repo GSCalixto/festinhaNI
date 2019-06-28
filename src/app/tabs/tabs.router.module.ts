@@ -17,11 +17,20 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'listUsuario',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../pages/list-usuario/list-usuario.module#ListUsuarioPageModule'
+          }
+        ]
+      },
+      {
+        path: 'addUsuario',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/add-usuario/add-usuario.module#AddUsuarioPageModule'
           }
         ]
       },
