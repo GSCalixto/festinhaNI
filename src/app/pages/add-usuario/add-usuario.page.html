@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding calss="ligth">
   <form #fc = "ngForm" (ngSubmit)="onSubmit(fc)">
     <ion-item>
       <ion-label position="floating">Nome</ion-label>
@@ -36,8 +36,6 @@
     <ion-item lines="none"></ion-item>
       <ion-button type="submit" [disabled]="fc.invalid || (p.value != c.value)">Salvar</ion-button>
       <ion-button routerLink="/" (click)="fc.clear()">Cancelar</ion-button>
-
-    
 
   </form>
 </ion-content>
