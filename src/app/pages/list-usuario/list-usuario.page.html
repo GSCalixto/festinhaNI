@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar class="festinha">
-    <ion-title>list-usuario</ion-title>
+    <ion-title>lista de usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,5 +11,14 @@
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
+      
+      <ion-list *ngIf="usuarios | async as users">
+        <ion-item *ngFor="let user of users" routerLink="/tabs/perfilUsuario/{{user.key}}">
+          <ion-text>
+            {{user.nome}} - {{user.email}}
+          </ion-text>
+          <ion-note>{{user.key}}</ion-note>
+        </ion-item>
+      </ion-list>
 
 </ion-content>

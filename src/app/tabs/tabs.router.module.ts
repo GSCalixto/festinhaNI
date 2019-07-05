@@ -35,6 +35,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'perfilUsuario/:key'/*:key => cria uma variavel de navegação*/,
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule'
+          }
+        ]
+      },
+      {
         path: 'tab3',
         children: [
           {
