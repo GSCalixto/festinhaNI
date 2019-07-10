@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar class="festinha">
+    <ion-title>lista de eventos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="eventos | async as events">
+    <ion-item-sliding *ngFor="let event of events">
+      <ion-item-options side="start">
+        <ion-item-option (click)="apagar()" color="danger" expandable>
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      
+      <ion-item routerLink="/tabs/perfilEvento/{{event.key}}">
+        <ion-text>
+          {{event.nome}} {{event.tema}} {{event.data}}
+        </ion-text>
+        <ion-note>{{event.key}}</ion-note>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="atualizar()" expandable>
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="danger" routerLink="/tabs/addEvento">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>

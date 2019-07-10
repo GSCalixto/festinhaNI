@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar class="festinha">
+    <ion-title>adicionar evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding calss="ligth">
+  <form #fc = "ngForm" (ngSubmit)="onSubmit(fc)">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" name="nome" [(ngModel)]= "evento.nome" #n="ngModel" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tema</ion-label>
+      <ion-input type="tema" name="tema" [(ngModel)]= "evento.tema"  #t="ngModel" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Data</ion-label>
+      <ion-input type="data" name="data" [(ngModel)]= "evento.data" #d="ngModel" required></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="floating">Horario</ion-label>
+      <ion-input type="horario" name="horario" [(ngModel)]="evento.horario" #h="ngModel" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Local</ion-label>
+      <ion-input type="local" name="local" [(ngModel)]="evento.local" #l="ngModel" required></ion-input>
+    </ion-item>
+    <ion-item lines="none"></ion-item>
+      <ion-button type="submit" >Salvar</ion-button>
+      <ion-button routerLink="/" (click)="fc.clear()">Cancelar</ion-button>
+
+  </form>
+</ion-content>
