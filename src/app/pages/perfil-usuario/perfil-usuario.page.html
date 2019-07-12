@@ -7,6 +7,9 @@
 <ion-content>
   <ion-list *ngIf="usuario | async as user">
     <ion-item >
+        <ion-avatar>
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-avatar>
       <ion-text>
         {{user.nome}}
       </ion-text>
@@ -19,7 +22,7 @@
         {{user.pws}}
       </ion-text>
       &nbsp;
-      <ion-note>{{key}} </ion-note>
+      <ion-note>{{key}}</ion-note>
     </ion-item>
   </ion-list>
 </ion-content>

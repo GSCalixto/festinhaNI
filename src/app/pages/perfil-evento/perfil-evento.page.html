@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-toolbar class= "festinha">
+  <ion-toolbar class="festinha">
     <ion-title>perfil do evento</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list *ngIf="evento | async as event">
-    <ion-item >
+    <ion-item>
       <ion-text>
         {{event.nome}}
       </ion-text>
