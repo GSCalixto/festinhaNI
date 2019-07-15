@@ -36,6 +36,7 @@ export class AddUsuarioPage implements OnInit {
   onSubmit(form) {
     if (form.valid) {
       if (!this.key) {
+        this.usuario.foto = this.preview;
         this.usuarioService.save(this.usuario)
           //salvando dados
           // tentar/então com dois resultados verdadeiro ou falso
