@@ -22,4 +22,10 @@ export class EventoService {
   get(key: string) {
     return this.db.object<Evento>("evento/" + key).valueChanges()/*pega os valores*/
   }
+  remove(key: string) {
+    return this.db.object("evento/" + key).remove()
+  }
+  update(evento: Evento, key: string) {
+    return this.db.object("evento/" + key).update(evento)
+  }
 }

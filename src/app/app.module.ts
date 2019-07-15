@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +24,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},FormsModule
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},FormsModule, Camera
   ],
   bootstrap: [AppComponent]
 })

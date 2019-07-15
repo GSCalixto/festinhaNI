@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFireDatabase } from '@angular/fire/database';
+
 
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-list-usuario',
@@ -15,7 +16,7 @@ export class ListUsuarioPage implements OnInit {
   
   
 
-  constructor(public usuarioService: UsuarioService, public router: Router) { }
+  constructor(public usuarioService: UsuarioService, public router: Router, public alertController: AlertController) { }
  
   doRefresh(event) {
     console.log('Begin async operation');
@@ -29,9 +30,20 @@ export class ListUsuarioPage implements OnInit {
   ngOnInit() {
     this.usuarios = this.usuarioService.getAll();
   }
-  atualizar(){
-    this.router.navigate(['/tabs/listUsuario']);}
-  apagar(){
-    
+  apagar(key){
+    this.usuarioService.remove(key).then(
+      res => {this.presentAlert("Aviso!", "Usuario apagado")}, 
+      err =>{this.presentAlert("Erro!", "Não foi possivel apagar o usuario!")}
+    ) 
+  }
+  async presentAlert(titulo: string, texto: string) {
+    const alert = await this.alertController.create({
+      header: titulo,
+      //subHeader:'',
+      message: texto,
+      buttons: ['Talkey']
+    });
+
+    await alert.present();
   }
 }

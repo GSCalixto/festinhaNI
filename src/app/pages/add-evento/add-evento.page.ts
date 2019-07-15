@@ -13,7 +13,7 @@ import { EventoService } from 'src/app/services/evento.service';
 export class AddEventoPage implements OnInit {
 
   public evento:Evento;
-  
+  public key: string;
   
 
   constructor(public alertController: AlertController, public router: Router,public eventoService: EventoService) {}
