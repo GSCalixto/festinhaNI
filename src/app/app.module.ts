@@ -7,20 +7,21 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 
+//firebase--------------------------------
+//[conecxão]
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-//firebase--------------------------------
-//[conecxão]
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
-
-import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireDatabaseModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireDatabaseModule,AngularFireAuthModule],
   providers: [
     StatusBar,
     SplashScreen,

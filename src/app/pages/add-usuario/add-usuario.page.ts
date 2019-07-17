@@ -27,6 +27,7 @@ export class AddUsuarioPage implements OnInit {
 
   ngOnInit() {
     this.usuario = new Usuario;
+    this.preview = null;
     this.key = this.activeRoute.snapshot.paramMap.get("key");
     if (this.key) {
       this.usuarioService.get(this.key).subscribe(res => this.usuario = res, err => this.key = null);
@@ -34,8 +35,9 @@ export class AddUsuarioPage implements OnInit {
   }
 
   onSubmit(form) {
-    if (form.valid) {
-      if (!this.key) {
+    //if(this.preview = null){
+      if (form.valid) {
+        if (!this.key) {
         this.usuario.foto = this.preview;
         this.usuarioService.save(this.usuario)
           //salvando dados
@@ -70,6 +72,7 @@ export class AddUsuarioPage implements OnInit {
           )
       }
     }
+  //}
   }
 
   async presentAlert(titulo: string, texto: string) {

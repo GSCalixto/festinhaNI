@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar class="festinha">
+    <ion-title>login do usuário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="email" name="email" [(ngModel)]="email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" name="pws" [(ngModel)]="pws" minlength="6" required></ion-input>
+    </ion-item>
+    <ion-item lines="none"></ion-item>
+    <ion-button type="submit">Entrar</ion-button>
+    <ion-button routerLink="/">Cancelar</ion-button>
+  </form>
+  <ion-button expand="block" fill="outline" (click)="loginWeb()">entrar com &nbsp; <ion-icon name="logo-googleplus"></ion-icon></ion-button>
+  <ion-button expand="block" fill="outline" (click)="logout()" routerLink="/">
+    Sair
+  </ion-button>
+</ion-content>

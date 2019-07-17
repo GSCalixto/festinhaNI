@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },  { path: 'login-usuario', loadChildren: './pages/login-usuario/login-usuario.module#LoginUsuarioPageModule' },
+
   //{ path: 'add-evento', loadChildren: './pages/add-evento/add-evento.module#AddEventoPageModule' },
   //{ path: 'perfil-evento', loadChildren: './pages/perfil-evento/perfil-evento.module#PerfilEventoPageModule' },
 
