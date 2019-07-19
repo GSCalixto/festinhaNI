@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 //firebase--------------------------------
 //[conecxão]
@@ -25,7 +26,7 @@ import { AppComponent } from './app.component';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},FormsModule, Camera
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},FormsModule, Camera, Geolocation 
   ],
   bootstrap: [AppComponent]
 })

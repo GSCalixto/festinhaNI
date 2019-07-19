@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { AngularFireAuth } from "@angular/fire/auth";
 
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/model/usuario';
@@ -23,7 +24,10 @@ export class AddUsuarioPage implements OnInit {
 
 
   constructor(public alertController: AlertController, public router: Router, public usuarioService: UsuarioService,
-    public activeRoute: ActivatedRoute, private camera: Camera) { }
+    public activeRoute: ActivatedRoute, private camera: Camera, private afAuth: AngularFireAuth, private loadingCTRL: LoadingController) { }
+
+
+
 
   ngOnInit() {
     this.usuario = new Usuario;
@@ -34,21 +38,40 @@ export class AddUsuarioPage implements OnInit {
     }
   }
 
+
+  showLoading() {
+    this.loadingCTRL.create({
+      message: "Cadastrando...",
+      spinner: "lines-small"
+    }).then((loading) => { loading.present(); })
+  }
+
+  closeLoading() {
+    this.loadingCTRL.dismiss();
+  }
+
+
   onSubmit(form) {
     //if(this.preview = null){
-      if (form.valid) {
-        if (!this.key) {
-        this.usuario.foto = this.preview;
-        this.usuarioService.save(this.usuario)
+    if (form.valid) {
+      this.usuario.foto = this.preview;
+      if (!this.key) {
+        this.afAuth.auth.createUserWithEmailAndPassword(this.usuario.email, this.usuario.pws)
           //salvando dados
           // tentar/então com dois resultados verdadeiro ou falso
           .then(
             res => {
+
+              this.closeLoading();
+              this.usuario.email = null;
+              this.usuario.pws = null;
+              this.usuarioService.save(this.usuario, res.user.uid);
               this.presentAlert("Aviso", "Cadastrado!");
               form.reset;
               this.router.navigate(['/']);
             },
             err => {
+              this.closeLoading()
               this.presentAlert("Opa!", "Erro ao cadastrado!");
             }
           ).catch(
@@ -72,7 +95,7 @@ export class AddUsuarioPage implements OnInit {
           )
       }
     }
-  //}
+    //}
   }
 
   async presentAlert(titulo: string, texto: string) {

@@ -9,8 +9,9 @@ import { map } from 'rxjs/operators'
 export class UsuarioService {
 
   constructor(public db: AngularFireDatabase) { }
-  save(usuario: Usuario) {
-    return this.db.list("usuario").push(usuario);
+  save(usuario: Usuario, key: string) {
+    //return this.db.list("usuario").push(usuario);
+    return this.db.object<Usuario>("usuario/" + key).set(usuario);//set permite vc colocar uma key da sua escolha
   }
   getAll() {
     return this.db.list<Usuario[]>("usuario").snapshotChanges()/*pega a key */
