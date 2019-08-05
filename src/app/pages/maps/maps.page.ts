@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, CameraPosition, MarkerOptions, Marker, Environment } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, CameraPosition, MarkerOptions, Marker } from '@ionic-native/google-maps';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -44,14 +45,36 @@ export class MapsPage implements OnInit {
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: {
-          lat: 43.0741904,
-          lng: -89.3809802
+          lat: -22.745907199999998,
+          lng: -43.4552832
         },
         zoom: 18,
         tilt: 30
       }
     };
-
     this.map = GoogleMaps.create('map_canvas', mapOptions);
+  }
+
+  market: Marker;
+
+  mapClick() { //Marcações do google maps     
+    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
+      res => {
+        //console.log(res);
+        if (this.market) {
+          this.market.setPosition(res[0]);
+        } else {
+          this.addMarket();
+        }
+      })
+  }
+  addMarket() {
+    this.market = this.map.addMarkerSync({
+      position: {
+        lat: this.lat,
+        lng: this.lng
+        //position: res[0]
+      }
+    });
   }
 }
