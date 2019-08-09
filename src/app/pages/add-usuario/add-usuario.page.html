@@ -8,42 +8,50 @@
   <ion-item lines="none">
     <img src="assets/perfil.png" alt="" (click)="tirarFoto()" *ngIf="preview == null">
     <img [src]="preview" alt="" (click)="tirarFoto()" *ngIf="preview != null">
-  </ion-item> 
-  <form #fc = "ngForm" (ngSubmit)="onSubmit(fc)">
+  </ion-item>
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
     <ion-item>
       <ion-label position="floating">Nome</ion-label>
-      <ion-input type="text" name="nome" [(ngModel)]= "usuario.nome" required></ion-input>
+      <ion-input type="text" name="nome" [(ngModel)]="usuario.nome" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input type="email" name="email" [(ngModel)]= "usuario.email"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #e="ngModel"></ion-input>
+      <ion-input type="email" name="email" [(ngModel)]="usuario.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        #e="ngModel"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="e.invalid && e.dirty">
       <strong>E-mail invalido</strong>
     </ion-text>
 
-
-    <ion-item>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password" name="pws" [(ngModel)]= "usuario.pws" #p="ngModel" minlength="6" required></ion-input>
-    </ion-item> 
-
-    <ion-text color="danger" *ngIf="p.invalid && p.dirty">
-      <strong>Senha muito curta</strong>
-    </ion-text>
-
-    <ion-item>
-      <ion-label position="floating">Confirmar senha</ion-label>
-      <ion-input type="password" name="conf" [(ngModel)]="conf" #c="ngModel" minlength="6" required></ion-input>
+    <ion-item lines="none" *ngIf="key">
+      <ion-butto>Redefinir senha</ion-button>
     </ion-item>
-    <ion-text color="danger" *ngIf="p.value != c.value">
-      <strong>Senha diferente</strong>
-    </ion-text>
 
-    <ion-item lines="none"></ion-item>
-      <ion-button type="submit" [disabled]="fc.invalid || (p.value != c.value)">Salvar</ion-button>
+    <div *ngIf="!key">
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" name="pws" [(ngModel)]="usuario.pws" #p="ngModel" minlength="6" required></ion-input>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="p.invalid && p.dirty">
+        <strong>Senha muito curta</strong>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="floating">Confirmar senha</ion-label>
+        <ion-input type="password" name="conf" [(ngModel)]="conf" #c="ngModel" minlength="6" required></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="p.value != c.value">
+        <strong>Senha diferente</strong>
+      </ion-text>
+    </div>
+
+    <ion-item lines="none">
+      <ion-button type="submit" [disabled]="fc.invalid || (p.value != c.value)" *ngIf="!key">Salvar</ion-button>
+      <ion-button type="submit" [disabled]="fc.invalid" *ngIf="key">Atualizar</ion-button>
       <ion-button routerLink="/" (click)="fc.clear()">Cancelar</ion-button>
+    </ion-item>
 
   </form>
 </ion-content>
